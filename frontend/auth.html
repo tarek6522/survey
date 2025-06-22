@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول / إنشاء حساب - استبيانات سوريا</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>استبيانات سوريا</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="surveys.html">الاستبيانات</a></li>
+                    <li><a href="index.html#how-it-works">كيف تعمل؟</a></li>
+                    <li><a href="rewards.html">المكافآت</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="auth.html" class="button primary">تسجيل</a>
+                <a href="auth.html" class="button secondary">دخول</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="auth-page-main">
+        <section class="auth-form-section">
+            <div class="container">
+                <div class="auth-switcher">
+                    <button id="login-tab" class="active">تسجيل الدخول</button>
+                    <button id="signup-tab">إنشاء حساب</button>
+                </div>
+
+                <form id="login-form" class="auth-form">
+                    <h2>تسجيل الدخول</h2>
+                    <div class="form-group">
+                        <label for="login-email">البريد الإلكتروني:</label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">كلمة المرور:</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    <button type="submit" class="button primary full-width">دخول</button>
+                    <a href="#" class="forgot-password-link">نسيت كلمة المرور؟</a>
+                </form>
+
+                <form id="signup-form" class="auth-form hidden">
+                    <h2>إنشاء حساب جديد</h2>
+                    <div class="form-group">
+                        <label for="signup-username">اسم المستخدم:</label>
+                        <input type="text" id="signup-username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">البريد الإلكتروني:</label>
+                        <input type="email" id="signup-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-phone">رقم الهاتف:</label>
+                        <input type="tel" id="signup-phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">كلمة المرور:</label>
+                        <input type="password" id="signup-password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm-password">تأكيد كلمة المرور:</label>
+                        <input type="password" id="signup-confirm-password" name="confirm_password" required>
+                    </div>
+                    <button type="submit" class="button primary full-width">إنشاء حساب</button>
+                    <p class="terms-text">بالضغط على "إنشاء حساب"، أنت توافق على <a href="terms.html">شروط الخدمة</a> و <a href="privacy.html">سياسة الخصوصية</a>.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 استبيانات سوريا. جميع الحقوق محفوظة.</p>
+            <div class="footer-links">
+                <a href="privacy.html">سياسة الخصوصية</a>
+                <a href="terms.html">شروط الخدمة</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

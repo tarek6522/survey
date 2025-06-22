@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الاستبيانات المتاحة - استبيانات سوريا</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>استبيانات سوريا</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="surveys.html">الاستبيانات</a></li>
+                    <li><a href="#">كيف تعمل؟</a></li>
+                    <li><a href="rewards.html">المكافآت</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="auth.html" class="button primary">تسجيل</a>
+                <a href="auth.html" class="button secondary">دخول</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="surveys-list-section">
+            <div class="container">
+                <h2>تصفح الاستبيانات المتاحة</h2>
+                <p class="subtitle">اختر الاستبيان الذي يناسب اهتماماتك واجمع النقاط.</p>
+
+                <div class="filter-sort-bar">
+                    <select id="category-filter">
+                        <option value="all">كل الفئات</option>
+                        <option value="education">تعليم</option>
+                        <option value="health">صحة</option>
+                        <option value="economy">اقتصاد</option>
+                        <option value="environment">بيئة</option>
+                        <option value="social">مجتمع</option>
+                    </select>
+                    <select id="sort-by">
+                        <option value="newest">الأحدث أولاً</option>
+                        <option value="points-high">أعلى نقاط</option>
+                        <option value="points-low">أقل نقاط</option>
+                        <option value="duration-short">أقصر مدة</option>
+                    </select>
+                    <input type="text" class="search-input" placeholder="ابحث عن استبيان...">
+                </div>
+
+                <div class="survey-cards-grid">
+                    <div class="survey-card-item">
+                        <h3>استبيان: تحديات المياه في سوريا</h3>
+                        <div class="survey-meta">
+                            <span class="points">700 نقطة</span>
+                            <span class="duration">10 دقائق</span>
+                            <span class="category">الفئة: بيئة</span>
+                        </div>
+                        <p>شارك في هذا الاستبيان وساهم في فهم التحديات وتقديم الحلول.</p>
+                        <a href="single-survey.html" class="button primary full-width">ابدأ الاستبيان</a>
+                    </div>
+
+                    <div class="survey-card-item">
+                        <h3>استبيان: تأثير التضخم على الأسر</h3>
+                        <div class="survey-meta">
+                            <span class="points">900 نقطة</span>
+                            <span class="duration">15 دقيقة</span>
+                            <span class="category">الفئة: اقتصاد</span>
+                        </div>
+                        <p>ساهم بآرائك حول تأثير الوضع الاقتصادي على معيشة الأسر السورية.</p>
+                        <a href="single-survey.html" class="button primary full-width">ابدأ الاستبيان</a>
+                    </div>
+
+                    <div class="survey-card-item">
+                        <h3>استبيان: جودة الخدمات الصحية</h3>
+                        <div class="survey-meta">
+                            <span class="points">600 نقطة</span>
+                            <span class="duration">8 دقائق</span>
+                            <span class="category">الفئة: صحة</span>
+                        </div>
+                        <p>قيم مستوى الخدمات الصحية المتوفرة وقدم مقترحاتك للتحسين.</p>
+                        <a href="single-survey.html" class="button primary full-width">ابدأ الاستبيان</a>
+                    </div>
+                </div>
+
+                <button id="load-more-surveys" class="button secondary load-more-button">تحميل المزيد من الاستبيانات</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 استبيانات سوريا. جميع الحقوق محفوظة.</p>
+            <div class="footer-links">
+                <a href="privacy.html">سياسة الخصوصية</a>
+                <a href="terms.html">شروط الخدمة</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

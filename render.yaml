@@ -1,0 +1,8 @@
+
+services:
+  - type: web
+    name: survey-site
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn surveysite.wsgi:application"
+    plan: free
