@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 # روابط الصفحات الأمامية (HTML)
 def index(request):
-    return render(request, 'frontend/index.html')
+    return render(request, "index.html")
 
 def surveys(request):
     return render(request, 'frontend/surveys.html')
