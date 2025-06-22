@@ -1,18 +1,15 @@
-import os
 from pathlib import Path
+import os
 
 # المسار الأساسي للمشروع
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ⚠️ لا تستخدم هذا المفتاح في بيئة الإنتاج!
 SECRET_KEY = 'django-insecure-very-secret-key-change-this-in-production'
 
-# ✅ لتفعيل عرض الأخطاء أثناء التطوير
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']  # يمكنك لاحقًا تخصيصها إذا لزم
+ALLOWED_HOSTS = ['*']
 
-# التطبيقات المثبتة
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -21,9 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -37,12 +32,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'backend.urls'
 
-import os
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'frontend')],  # ✅ هذا مهم جداً
+        'DIRS': [os.path.join(BASE_DIR, 'frontend')],  # هذا المسار مهم
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -54,7 +47,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
@@ -74,15 +66,19 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# الإعدادات الدولية
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ar'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# الملفات الثابتة (CSS/JS...)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'frontend'),  # التأكد من أن الملفات في `frontend` يمكن الوصول إليها
+]
 
-# إعدادات افتراضية
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# أضف ملفات Static الخاصة بك مثل:
+# - CSS
+# - JavaScript
+# - صور
