@@ -17,10 +17,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-,
-    \'core\',
+    'core',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,6 +75,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend'),  # التأكد من أن الملفات في `frontend` يمكن الوصول إليها
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'frontend')  # ← هذا هو المهم
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
