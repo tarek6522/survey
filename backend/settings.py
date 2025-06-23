@@ -21,7 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',  # ✅ اسم التطبيق الصحيح
+     'core',  # ← بدون 'backend.core'
 ]
 
 # الوسيطات (Middleware)
