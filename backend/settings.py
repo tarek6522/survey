@@ -4,12 +4,16 @@ import os
 # المسار الأساسي للمشروع
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# مفتاح الأمان - غيّره في الإنتاج
 SECRET_KEY = 'django-insecure-very-secret-key-change-this-in-production'
 
-DEBUG = False
+# وضع التصحيح (غيّره إلى False عند النشر)
+DEBUG = True
 
-ALLOWED_HOSTS = ['yourdomain.com']
+# اسم النطاقات المسموحة
+ALLOWED_HOSTS = ['yourdomain.com']  # استخدم ['*'] أثناء التطوير فقط
 
+# التطبيقات المثبتة
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -17,10 +21,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'backend.core',  # ← هذا ما يجب استخدامه
+    'core',  # ✅ اسم التطبيق الصحيح
 ]
 
-
+# الوسيطات (Middleware)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -31,12 +35,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# ملفات URL الرئيسية
 ROOT_URLCONF = 'backend.urls'
 
+# إعدادات القوالب
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'frontend')],  # هذا المسار مهم
+        'DIRS': [os.path.join(BASE_DIR, 'frontend')],  # ✅ مجلد HTML
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -49,9 +55,10 @@ TEMPLATES = [
     },
 ]
 
+# إعدادات WSGI
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-# إعدادات قاعدة البيانات (SQLite مؤقتًا)
+# قاعدة البيانات - SQLite
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -59,29 +66,27 @@ DATABASES = {
     }
 }
 
-# كلمات مرور آمنة
+# التحقق من كلمات المرور
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
 ]
 
+# اللغة والمنطقة
 LANGUAGE_CODE = 'ar'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# إعدادات الملفات الثابتة
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend'),  # التأكد من أن الملفات في `frontend` يمكن الوصول إليها
-    os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'frontend')  # ← هذا هو المهم
-]
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# أضف ملفات Static الخاصة بك مثل:
-# - CSS
-# - JavaScript
-# - صور
