@@ -27,6 +27,7 @@ def auth_page(request):
 def single_survey(request):
     return render(request, 'frontend/single-survey.html')
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='home'),          # الصفحة الرئيسية
@@ -37,4 +38,5 @@ urlpatterns = [
     path('contact/', contact, name='contact'),   # صفحة الاتصال
     path('auth/', auth_page, name='auth'),       # صفحة تسجيل الدخول
     path('single-survey/', single_survey, name='single-survey'),  # الاستبيان المفرد
+    
 ]
