@@ -1,17 +1,17 @@
-from pathlib import Path
 import os
+from pathlib import Path
 
 # المسار الأساسي للمشروع
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# مفتاح الأمان - غيّره في الإنتاج
+# مفتاح الأمان
 SECRET_KEY = 'django-insecure-very-secret-key-change-this-in-production'
 
-# وضع التصحيح (غيّره إلى False عند النشر)
+# وضع التصحيح
 DEBUG = False
 
-# اسم النطاقات المسموحة
-ALLOWED_HOSTS = ['survey-backend-67ba.onrender.com', 'localhost', '127.0.0.1']  # استخدم ['*'] أثناء التطوير فقط
+# النطاقات المسموحة
+ALLOWED_HOSTS = ['survey-backend-67ba.onrender.com', 'localhost', '127.0.0.1']
 
 # التطبيقات المثبتة
 INSTALLED_APPS = [
@@ -21,12 +21,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'backend.core',  # ✅ فقط "core"
+    'backend.core',
 ]
 
-# الوسيطات (Middleware)
+# الوسيطات
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # ← لتخديم static files
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -35,14 +36,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# ملفات URL الرئيسية
 ROOT_URLCONF = 'backend.urls'
 
 # إعدادات القوالب
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'backend', 'templates')],  # ✅ مجلد HTML
+        'DIRS': [os.path.join(BASE_DIR, 'backend', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -55,10 +55,9 @@ TEMPLATES = [
     },
 ]
 
-# إعدادات WSGI
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-# قاعدة البيانات - SQLite
+# قاعدة البيانات
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -68,29 +67,24 @@ DATABASES = {
 
 # التحقق من كلمات المرور
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# اللغة والمنطقة
+# اللغة والتوقيت
 LANGUAGE_CODE = 'ar'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# إعدادات الملفات الثابتة
+# ملفات STATIC
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend')]  # ← ملفات CSS, JS
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # ← للمزامنة مع collectstatic
 
+# تفعيل التخزين الثابت عبر WhiteNoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
