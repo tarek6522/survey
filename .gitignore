@@ -15,8 +15,6 @@ env/
 # VSCode
 .vscode/
 
-# Static files
-staticfiles/
 
 # Environment variables
 .env
@@ -28,3 +26,5 @@ node_modules/
 # MacOS/Windows hidden files
 .DS_Store
 Thumbs.db
+
+staticfiles/
