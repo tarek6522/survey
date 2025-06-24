@@ -1,1 +1,1 @@
-web: gunicorn surveysite.wsgi:application
+web: gunicorn backend.wsgi:application

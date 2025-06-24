@@ -5,7 +5,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # مفتاح الأمان
-SECRET_KEY = 'django-insecure-very-secret-key-change-this-in-production'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme-in-production')
 
 # وضع التصحيح
 DEBUG = False
@@ -21,13 +21,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'backend.core',
+    'backend.core',  # تأكد أن هذا هو المسار الصحيح للتطبيق
 ]
 
 # الوسيطات
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # ← لتخديم static files
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # ← لتخديم static files في الإنتاج
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -36,6 +36,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# إعداد ملفات URL
 ROOT_URLCONF = 'backend.urls'
 
 # إعدادات القوالب
@@ -55,6 +56,7 @@ TEMPLATES = [
     },
 ]
 
+# إعدادات WSGI
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 # قاعدة البيانات
@@ -73,18 +75,17 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# اللغة والتوقيت
+# اللغة والمنطقة الزمنية
 LANGUAGE_CODE = 'ar'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# ملفات STATIC
+# إعدادات الملفات الثابتة (STATIC)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend')]  # ← ملفات CSS, JS
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # ← للمزامنة مع collectstatic
-
-# تفعيل التخزين الثابت عبر WhiteNoise
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend', 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# الحقول التلقائية
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
