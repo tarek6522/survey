@@ -21,7 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-     'core',  # ← بدون 'backend.core'
+    'backend.core',  # ✅ فقط "core"
 ]
 
 # الوسيطات (Middleware)
@@ -42,7 +42,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'frontend')],  # ✅ مجلد HTML
+        'DIRS': [os.path.join(BASE_DIR, 'backend', 'templates')],  # ✅ مجلد HTML
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
