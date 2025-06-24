@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from .models import Survey, Question, Answer, Reward, RedemptionRequest
 
@@ -10,16 +9,16 @@ class SurveyAdmin(admin.ModelAdmin):
     inlines = [QuestionInline]
 
 class RedemptionRequestAdmin(admin.ModelAdmin):
-    list_display = ('user', 'reward', 'status', 'created_at')
-    list_filter = ('status', 'created_at')
+    list_display = ('user', 'reward', 'is_approved', 'requested_at')
+    list_filter = ('is_approved', 'requested_at')
     actions = ['approve_requests', 'reject_requests']
 
     def approve_requests(self, request, queryset):
-        queryset.update(status='approved')
+        queryset.update(is_approved=True)
     approve_requests.short_description = "قبول الطلبات المحددة"
 
     def reject_requests(self, request, queryset):
-        queryset.update(status='rejected')
+        queryset.update(is_approved=False)
     reject_requests.short_description = "رفض الطلبات المحددة"
 
 admin.site.register(Survey, SurveyAdmin)
