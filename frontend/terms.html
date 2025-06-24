@@ -14,11 +14,14 @@
             <h1>استبيانات سوريا</h1>
             <nav>
                 <ul>
-                    <li><a href="index.html">الرئيسية</a></li>
-                    <li><a href="surveys.html">الاستبيانات</a></li>
-                    <li><a href="#">كيف تعمل؟</a></li>
-                    <li><a href="rewards.html">المكافآت</a></li>
-                    <li><a href="contact.html">اتصل بنا</a></li>
+                    <li><a href="{% url 'index' %}">الرئيسية</a></li>
+    <li><a href="{% url 'surveys' %}">الاستبيانات</a></li>
+    <li><a href="{% url 'rewards' %}">المكافآت</a></li>
+    <li><a href="{% url 'contact' %}">اتصل بنا</a></li>
+    <li><a href="{% url 'auth' %}">تسجيل الدخول</a></li>
+    <li><a href="{% url 'privacy' %}">سياسة الخصوصية</a></li>
+    <li><a href="{% url 'terms' %}">الشروط والأحكام</a></li>
+    <li><a href="{% url 'single_survey' %}">استبيان فردي</a></li>
                 </ul>
             </nav>
             <div class="auth-buttons">

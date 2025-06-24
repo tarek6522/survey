@@ -11,3 +11,16 @@ def rewards(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+def auth_view(request):
+    return render(request, 'auth.html')
+
+def privacy(request):
+    return render(request, 'privacy.html')
+
+def terms(request):
+    return render(request, 'terms.html')
+
+def single_survey(request):
+    return render(request, 'single-survey.html')
+
