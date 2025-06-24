@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-very-secret-key-change-this-in-production'
 
 # وضع التصحيح (غيّره إلى False عند النشر)
-DEBUG = True
+DEBUG = False
 
 # اسم النطاقات المسموحة
 ALLOWED_HOSTS = ['survey-backend-67ba.onrender.com', 'localhost', '127.0.0.1']  # استخدم ['*'] أثناء التطوير فقط
