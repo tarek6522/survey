@@ -89,3 +89,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # الحقول التلقائية
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# إعدادات staticfiles في الإنتاج
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# تأكد أن whitenoise مفعّل في middleware
+MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
