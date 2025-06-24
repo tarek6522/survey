@@ -11,7 +11,7 @@ SECRET_KEY = 'django-insecure-very-secret-key-change-this-in-production'
 DEBUG = True
 
 # اسم النطاقات المسموحة
-ALLOWED_HOSTS = ['yourdomain.com']  # استخدم ['*'] أثناء التطوير فقط
+ALLOWED_HOSTS = ['survey-backend-67ba.onrender.com', 'localhost', '127.0.0.1']  # استخدم ['*'] أثناء التطوير فقط
 
 # التطبيقات المثبتة
 INSTALLED_APPS = [
