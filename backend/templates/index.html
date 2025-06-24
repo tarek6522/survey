@@ -1,33 +1,38 @@
 {% load static %}
-{% load static %}
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>استبيانات سوريا</title>
-<!-- ربط ملف CSS بشكل صحيح -->
-<link href="{% static 'style.css' %}" rel="stylesheet"/>
-<script src="{% static 'script.js' %}"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>استبيانات سوريا</title>
+
+  <!-- ربط ملفات CSS و JS -->
+  <link href="{% static 'style.css' %}" rel="stylesheet" />
+  <script src="{% static 'script.js' %}"></script>
 </head>
 <body>
-<h1>استبيانات سوريا</h1>
-<nav>
-<ul>
-<li><a href="/">الرئيسية</a></li>
-<li><a href="/surveys/">الاستبيانات</a></li>
-<li><a href="/rewards/">المكافآت</a></li>
-<li><a href="/contact/">اتصل بنا</a></li>
-</ul>
-</nav>
-<div>
-<h2>أصواتك مهم... شارك، عَبِّر، واكسب!</h2>
-<p>منصة "استبيانات سوريا" تتيح لك التعبير عن رأيك حول قضايا تهم مجتمعنا، وكسب مكافآت قيمة مقابل آراءك.</p>
-<a href="/start-survey">ابدأ الآن!</a>
-</div>
-<footer>
-<p>© 2025 استبيانات سوريا</p>
-</footer>
+
+  <h1>استبيانات سوريا</h1>
+
+  <nav>
+    <ul>
+      <li><a href="{% url 'index' %}">الرئيسية</a></li>
+      <li><a href="{% url 'surveys' %}">الاستبيانات</a></li>
+      <li><a href="{% url 'rewards' %}">المكافآت</a></li>
+      <li><a href="{% url 'contact' %}">اتصل بنا</a></li>
+    </ul>
+  </nav>
+
+  <div>
+    <h2>أصواتك مهم... شارك، عَبِّر، واكسب!</h2>
+    <p>منصة "استبيانات سوريا" تتيح لك التعبير عن رأيك حول قضايا تهم مجتمعنا، وكسب مكافآت قيمة مقابل آراءك.</p>
+    <a href="{% url 'single_survey' %}">ابدأ الآن!</a>
+  </div>
+
+  <footer>
+    <p>© 2025 استبيانات سوريا</p>
+  </footer>
+
 </body>
 </html>
