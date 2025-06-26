@@ -18,7 +18,7 @@ INSTALLED_APPS = [
     'pages',
     'surveys',
     'rewards',
-    'accounts',
+    'accounts.apps.AccountsConfig',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',

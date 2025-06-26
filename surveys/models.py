@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.validators import MinValueValidator
+# MinValueValidator مستورد ولكن لم يُستخدم، احذفه إن لم تكن بحاجة إليه
+from django.core.validators import MinValueValidator
 
 class Survey(models.Model):
     title = models.CharField(max_length=255)
@@ -13,14 +14,12 @@ class Survey(models.Model):
         return self.title
 
 
-
 class Question(models.Model):
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE, related_name='questions')
     text = models.CharField(max_length=500)
 
     def __str__(self):
         return self.text
-
 
 
 class Answer(models.Model):
@@ -30,5 +29,5 @@ class Answer(models.Model):
     answered_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.question.text}"
-
+        user_display = self.user.username if self.user else "Anonymous"
+        return f"{user_display} - {self.question.text}"

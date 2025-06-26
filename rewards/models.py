@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django..validators import MinValueValidator
+from django.core.validators import MinValueValidator
+
 
 class Reward(models.Model):
     name = models.CharField(max_length=100)
@@ -11,11 +12,11 @@ class Reward(models.Model):
         return self.name
 
 
-
 class RedemptionRequest(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     reward = models.ForeignKey(Reward, on_delete=models.CASCADE)
     requested_at = models.DateTimeField(auto_now_add=True)
+
     STATUS_CHOICES = [
         ('pending', 'Pending'),
         ('approved', 'Approved'),
@@ -24,6 +25,5 @@ class RedemptionRequest(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
 
     def __str__(self):
-        return f"{self.user.username} - {self.reward.name}"
-
-
+        user_display = self.user.username if self.user else "Anonymous"
+        return f"{user_display} - {self.reward.name}"
