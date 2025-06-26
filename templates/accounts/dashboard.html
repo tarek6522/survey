@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>لوحة التحكم</h2>
+  <p>النقاط المكتسبة: {{ total_points }}</p>
+
+  <h3>الاستبيانات التي أجبت عليها:</h3>
+  <ul>
+    {% for answer in answers %}
+      <li>{{ answer.survey.title }}</li>
+    {% empty %}
+      <li>لم تجب على أي استبيان بعد.</li>
+    {% endfor %}
+  </ul>
+
+  <h3>طلبات الاسترداد:</h3>
+  <ul>
+    {% for req in redemptions %}
+      <li>{{ req.reward.name }} - {{ req.status }}</li>
+    {% empty %}
+      <li>لا توجد طلبات.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

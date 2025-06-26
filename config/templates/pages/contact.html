@@ -1,0 +1,96 @@
+
+{% extends 'base.html' %}
+{% block title %}{{ title|default:'الصفحة' }}{% endblock %}
+{% block content %}
+
+<!-- المحتوى الأصلي يبدأ هنا -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>اتصل بنا - استبيانات سوريا</title>
+  <link href="{% static 'style.css' %}" rel="stylesheet"/>
+  <script src="{% static 'script.js' %}"></script>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>استبيانات سوريا</h1>
+    <nav>
+      <ul>
+        <li><a href="{% url 'index' %}">الرئيسية</a></li>
+        <li><a href="{% url 'surveys' %}">الاستبيانات</a></li>
+        <li><a href="{% url 'index' %}#how-it-works">كيف تعمل؟</a></li>
+        <li><a href="{% url 'rewards' %}">المكافآت</a></li>
+        <li><a href="{% url 'contact' %}">اتصل بنا</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a class="button primary" href="{% url 'auth' %}">تسجيل</a>
+      <a class="button secondary" href="{% url 'auth' %}">دخول</a>
+    </div>
+  </div>
+</header>
+
+<main class="contact-page-main">
+  <section class="contact-section">
+    <div class="container">
+      <h2>اتصل بنا</h2>
+      <p class="subtitle">لديك سؤال أو اقتراح؟ نود أن نسمع منك!</p>
+      <div class="contact-content">
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="contact-name">اسمك الكامل:</label>
+            <input id="contact-name" name="name" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-email">بريدك الإلكتروني:</label>
+            <input id="contact-email" name="email" type="email" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-subject">الموضوع:</label>
+            <input id="contact-subject" name="subject" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-message">رسالتك:</label>
+            <textarea id="contact-message" name="message" rows="6" required></textarea>
+          </div>
+          <button class="button primary full-width" type="submit">إرسال الرسالة</button>
+        </form>
+
+        <div class="contact-info">
+          <h3>معلومات الاتصال</h3>
+          <p><i class="fas fa-map-marker-alt"></i> دمشق، سوريا</p>
+          <p><i class="fas fa-envelope"></i> info@syriasurveys.com</p>
+          <p><i class="fas fa-phone-alt"></i> +963 9XXXXXXXX</p>
+          <div class="social-links">
+            <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="انستغرام"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2025 استبيانات سوريا. جميع الحقوق محفوظة.</p>
+    <div class="footer-links">
+      <a href="{% url 'privacy' %}">سياسة الخصوصية</a>
+      <a href="{% url 'terms' %}">شروط الخدمة</a>
+    </div>
+  </div>
+</footer>
+
+<script src="{% static 'script.js' %}"></script>
+<script src="{% static 'a076d05399.js' %}" crossorigin="anonymous"></script>
+</body>
+</html>
+
+{% endblock %}

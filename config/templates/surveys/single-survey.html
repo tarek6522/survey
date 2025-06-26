@@ -1,0 +1,138 @@
+
+{% extends 'base.html' %}
+{% block title %}{{ title|default:'الصفحة' }}{% endblock %}
+{% block content %}
+
+<!-- المحتوى الأصلي يبدأ هنا -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>استبيان: تحديات المياه في سوريا - استبيانات سوريا</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}"/>
+  <script src="{% static 'script.js' %}"></script>
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>استبيانات سوريا</h1>
+    <nav>
+      <ul>
+        <li><a href="/">الرئيسية</a></li>
+        <li><a href="/surveys/">الاستبيانات</a></li>
+        <li><a href="#">كيف تعمل؟</a></li>
+        <li><a href="/rewards/">المكافآت</a></li>
+        <li><a href="/contact/">اتصل بنا</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a class="button primary" href="/auth/">تسجيل</a>
+      <a class="button secondary" href="/auth/">دخول</a>
+    </div>
+  </div>
+</header>
+
+<main class="single-survey-section">
+  <div class="container">
+    <div class="survey-header-details">
+      <h2>استبيان: تحديات المياه في سوريا</h2>
+      <div class="survey-meta">
+        <span class="points">700 نقطة</span>
+        <span class="duration">10 دقائق</span>
+        <span class="category">الفئة: بيئة ومجتمع</span>
+      </div>
+      <p>شاركنا رأيك حول قضايا المياه في سوريا، وساعدنا في جمع بيانات قيمة تساهم في فهم التحديات وتقديم الحلول الممكنة لتحسين إدارة الموارد المائية.</p>
+    </div>
+
+    <div class="survey-form">
+      <div class="progress-container">
+        <div class="progress-bar" id="survey-progress-bar" style="width: 0%;"></div>
+        <div class="progress-text" id="progress-text">0% مكتمل</div>
+      </div>
+
+      <form id="surveyForm">
+        <!-- سؤال 1 -->
+        <div class="form-question current-question" data-question-index="0">
+          <p class="question-text">1. ما هي أهم مصادر المياه التي تعتمد عليها أسرتك بشكل أساسي؟</p>
+          <div class="options-group">
+            <label><input type="radio" name="q1" value="شبكة المياه العامة" required> شبكة المياه العامة</label>
+            <label><input type="radio" name="q1" value="الآبار الارتوازية الخاصة"> الآبار الارتوازية الخاصة</label>
+            <label><input type="radio" name="q1" value="صهاريج المياه (نقليات)"> صهاريج المياه (نقليات)</label>
+            <label><input type="radio" name="q1" value="ينابيع / أنهار"> ينابيع / أنهار</label>
+            <label><input type="radio" name="q1" value="مصادر أخرى"> مصادر أخرى (يرجى التحديد أدناه)</label>
+            <textarea name="q1_other" class="hidden" placeholder="يرجى تحديد المصدر الآخر"></textarea>
+          </div>
+        </div>
+
+        <!-- سؤال 2 -->
+        <div class="form-question hidden" data-question-index="1">
+          <p class="question-text">2. ما هي أبرز المشكلات التي تواجهونها بخصوص توفر المياه؟</p>
+          <div class="options-group">
+            <label><input type="checkbox" name="q2" value="انقطاع متكرر"> انقطاع متكرر</label>
+            <label><input type="checkbox" name="q2" value="ضعف الضغط"> ضعف ضغط المياه</label>
+            <label><input type="checkbox" name="q2" value="جودة المياه"> جودة المياه</label>
+            <label><input type="checkbox" name="q2" value="ارتفاع التكلفة"> ارتفاع التكلفة</label>
+            <label><input type="checkbox" name="q2" value="صعوبة الوصول"> صعوبة الوصول</label>
+          </div>
+        </div>
+
+        <!-- سؤال 3 -->
+        <div class="form-question hidden" data-question-index="2">
+          <p class="question-text">3. هل تعتقد أن هناك جهودًا كافية تبذل لتحسين الوضع المائي؟</p>
+          <div class="options-group">
+            <label><input type="radio" name="q3" value="نعم بالتأكيد" required> نعم بالتأكيد</label>
+            <label><input type="radio" name="q3" value="إلى حد ما"> إلى حد ما</label>
+            <label><input type="radio" name="q3" value="لا أعتقد ذلك"> لا أعتقد ذلك</label>
+            <label><input type="radio" name="q3" value="لا أعرف"> لا أعرف</label>
+          </div>
+        </div>
+
+        <!-- سؤال 4 -->
+        <div class="form-question hidden" data-question-index="3">
+          <p class="question-text">4. ما هي اقتراحاتك لتحسين إدارة الموارد المائية؟</p>
+          <div class="options-group">
+            <textarea name="q4" placeholder="اكتب اقتراحاتك هنا..." rows="5" required></textarea>
+          </div>
+        </div>
+
+        <div class="survey-navigation-buttons">
+          <button type="button" id="prev-question-btn" class="button secondary" style="display: none;">السابق</button>
+          <button type="button" id="next-question-btn" class="button primary">التالي</button>
+          <button type="submit" id="submit-survey-btn" class="button primary" style="display: none;">إرسال الاستبيان</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<!-- نافذة النجاح -->
+<div class="modal-overlay hidden" id="successModal">
+  <div class="modal-content">
+    <span class="close-button">×</span>
+    <img src="{% static 'success-icon.png' %}" alt="Success Icon" class="modal-icon"/>
+    <h3>شكراً لمشاركتك!</h3>
+    <p>لقد أكملت الاستبيان بنجاح. تم إضافة <span>700</span> نقطة إلى رصيدك.</p>
+    <div class="modal-buttons">
+      <a class="button primary" href="/surveys/">تصفح استبيانات أخرى</a>
+      <a class="button secondary" href="/rewards/">مشاهدة المكافآت</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>© 2025 استبيانات سوريا. جميع الحقوق محفوظة.</p>
+    <div class="footer-links">
+      <a href="/privacy/">سياسة الخصوصية</a>
+      <a href="/terms/">شروط الخدمة</a>
+    </div>
+  </div>
+</footer>
+
+<script src="{% static 'script.js' %}"></script>
+</body>
+</html>
+
+{% endblock %}

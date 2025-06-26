@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>إحصائيات استبيان: {{ survey.title }}</h2>
+  <p>الوصف: {{ survey.description }}</p>
+  <p>عدد الإجابات: {{ answers_count }}</p>
+
+  <h3>الأسئلة:</h3>
+  <ul>
+    {% for q in questions %}
+      <li>{{ q.text }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

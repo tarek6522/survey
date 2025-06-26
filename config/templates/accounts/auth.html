@@ -1,0 +1,111 @@
+
+{% extends 'base.html' %}
+{% block title %}{{ title|default:'الصفحة' }}{% endblock %}
+{% block content %}
+
+<!-- المحتوى الأصلي يبدأ هنا -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تسجيل الدخول / إنشاء حساب - استبيانات سوريا</title>
+  <link href="{% static 'style.css' %}" rel="stylesheet"/>
+  <script src="{% static 'script.js' %}"></script>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>استبيانات سوريا</h1>
+    <nav>
+      <ul>
+        <li><a href="{% url 'index' %}">الرئيسية</a></li>
+        <li><a href="{% url 'surveys' %}">الاستبيانات</a></li>
+        <li><a href="{% url 'index' %}#how-it-works">كيف تعمل؟</a></li>
+        <li><a href="{% url 'rewards' %}">المكافآت</a></li>
+        <li><a href="{% url 'contact' %}">اتصل بنا</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a class="button primary" href="{% url 'auth' %}">تسجيل</a>
+      <a class="button secondary" href="{% url 'auth' %}">دخول</a>
+    </div>
+  </div>
+</header>
+
+<main class="auth-page-main">
+  <section class="auth-form-section">
+    <div class="container">
+
+      <div class="auth-switcher">
+        <button class="active" id="login-tab">تسجيل الدخول</button>
+        <button id="signup-tab">إنشاء حساب</button>
+      </div>
+
+      <form class="auth-form" id="login-form">
+        <h2>تسجيل الدخول</h2>
+        <div class="form-group">
+          <label for="login-email">البريد الإلكتروني:</label>
+          <input id="login-email" name="email" type="email" required />
+        </div>
+        <div class="form-group">
+          <label for="login-password">كلمة المرور:</label>
+          <input id="login-password" name="password" type="password" required />
+        </div>
+        <button type="submit" class="button primary full-width">دخول</button>
+        <a href="#" class="forgot-password-link">نسيت كلمة المرور؟</a>
+      </form>
+
+      <form class="auth-form hidden" id="signup-form">
+        <h2>إنشاء حساب جديد</h2>
+        <div class="form-group">
+          <label for="signup-username">اسم المستخدم:</label>
+          <input id="signup-username" name="username" type="text" required />
+        </div>
+        <div class="form-group">
+          <label for="signup-email">البريد الإلكتروني:</label>
+          <input id="signup-email" name="email" type="email" required />
+        </div>
+        <div class="form-group">
+          <label for="signup-phone">رقم الهاتف:</label>
+          <input id="signup-phone" name="phone" type="tel" required />
+        </div>
+        <div class="form-group">
+          <label for="signup-password">كلمة المرور:</label>
+          <input id="signup-password" name="password" type="password" required />
+        </div>
+        <div class="form-group">
+          <label for="signup-confirm-password">تأكيد كلمة المرور:</label>
+          <input id="signup-confirm-password" name="confirm_password" type="password" required />
+        </div>
+        <button type="submit" class="button primary full-width">إنشاء حساب</button>
+        <p class="terms-text">
+          بالضغط على "إنشاء حساب"، أنت توافق على
+          <a href="{% url 'terms' %}">شروط الخدمة</a>
+          و
+          <a href="{% url 'privacy' %}">سياسة الخصوصية</a>.
+        </p>
+      </form>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2025 استبيانات سوريا. جميع الحقوق محفوظة.</p>
+    <div class="footer-links">
+      <a href="{% url 'privacy' %}">سياسة الخصوصية</a>
+      <a href="{% url 'terms' %}">شروط الخدمة</a>
+    </div>
+  </div>
+</footer>
+
+<script src="{% static 'script.js' %}"></script>
+</body>
+</html>
+
+{% endblock %}

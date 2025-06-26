@@ -1,0 +1,94 @@
+
+{% extends 'base.html' %}
+{% block title %}{{ title|default:'الصفحة' }}{% endblock %}
+{% block content %}
+
+<!-- المحتوى الأصلي يبدأ هنا -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>المكافآت - استبيانات سوريا</title>
+  <link href="{% static 'style.css' %}" rel="stylesheet"/>
+  <script src="{% static 'script.js' %}"></script>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>استبيانات سوريا</h1>
+    <nav>
+      <ul>
+        <li><a href="{% url 'index' %}">الرئيسية</a></li>
+        <li><a href="{% url 'surveys' %}">الاستبيانات</a></li>
+        <li><a href="{% url 'index' %}#how-it-works">كيف تعمل؟</a></li>
+        <li><a href="{% url 'rewards' %}">المكافآت</a></li>
+        <li><a href="{% url 'contact' %}">اتصل بنا</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a class="button primary" href="{% url 'auth' %}">تسجيل</a>
+      <a class="button secondary" href="{% url 'auth' %}">دخول</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="rewards-section">
+    <div class="container">
+      <h2>مكافآتك تنتظرك!</h2>
+      <p class="subtitle">استبدل نقاطك التي كسبتها من الاستبيانات بمكافآت قيمة.</p>
+
+      <div class="user-points-info">
+        <h3>نقاطك الحالية: <span id="current-points">0</span> نقطة</h3>
+      </div>
+
+      <div class="reward-cards">
+        <div class="reward-card">
+          <img src="https://via.placeholder.com/150x100?text=MTN+Cash" alt="MTN كاش"/>
+          <h3>MTN كاش</h3>
+          <p>احصل على مبلغ نقدي يضاف إلى محفظة MTN كاش الخاصة بك.</p>
+          <ul>
+            <li>قيمة المبلغ: 25,000 ل.س</li>
+            <li>يتم التحويل خلال 24 ساعة</li>
+            <li>تأكيد عبر رقم الهاتف</li>
+          </ul>
+          <span class="points-cost">1200 نقطة</span>
+          <button class="button primary redeem-button">استبدال المكافأة</button>
+        </div>
+
+        <div class="reward-card">
+          <img src="https://via.placeholder.com/150x100?text=Syriatel+Cash" alt="Syriatel كاش"/>
+          <h3>Syriatel كاش</h3>
+          <p>احصل على مبلغ نقدي يضاف إلى محفظة Syriatel كاش الخاصة بك.</p>
+          <ul>
+            <li>قيمة المبلغ: 25,000 ل.س</li>
+            <li>يتم التحويل خلال 24 ساعة</li>
+            <li>تأكيد عبر رقم الهاتف</li>
+          </ul>
+          <span class="points-cost">1200 نقطة</span>
+          <button class="button primary redeem-button">استبدال المكافأة</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2025 استبيانات سوريا. جميع الحقوق محفوظة.</p>
+    <div class="footer-links">
+      <a href="{% url 'privacy' %}">سياسة الخصوصية</a>
+      <a href="{% url 'terms' %}">شروط الخدمة</a>
+    </div>
+  </div>
+</footer>
+
+<script src="{% static 'script.js' %}"></script>
+</body>
+</html>
+
+{% endblock %}

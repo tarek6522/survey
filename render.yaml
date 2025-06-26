@@ -1,9 +1,40 @@
 services:
   - type: web
-    name: survey-backend
+    name: survey-app
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn backend.wsgi:application
     plan: free
-    branch: main
-    autoDeploy: true
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn config.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DB_NAME
+        fromDatabase:
+          name: survey-db
+          property: name
+      - key: DB_USER
+        fromDatabase:
+          name: survey-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: survey-db
+          property: password
+      - key: DB_HOST
+        fromDatabase:
+          name: survey-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: survey-db
+          property: port
+
+databases:
+  - name: survey-db
+    plan: free
+    databaseName: survey_db
+    user: survey_user
