@@ -22,3 +22,5 @@ def contact(request):
     return render(request, 'contact.html')
 
 @login_required
+def placeholder_view(request):
+    return render(request, 'pages/placeholder.html')
