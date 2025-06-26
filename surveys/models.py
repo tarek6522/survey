@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-# MinValueValidator مستورد ولكن لم يُستخدم، احذفه إن لم تكن بحاجة إليه
 from django.core.validators import MinValueValidator
+
 
 class Survey(models.Model):
     title = models.CharField(max_length=255)
@@ -9,6 +9,7 @@ class Survey(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     is_public = models.BooleanField(default=True)
     target_group = models.CharField(max_length=100, blank=True, null=True)
+    points = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])  # ✅ جديد
 
     def __str__(self):
         return self.title
