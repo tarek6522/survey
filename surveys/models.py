@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django..validators import MinValueValidator
+from django.validators import MinValueValidator
 
 class Survey(models.Model):
     title = models.CharField(max_length=255)
