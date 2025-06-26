@@ -26,6 +26,8 @@ def single_survey(request, survey_id):
     return render(request, 'single-survey.html', {'survey': survey, 'questions': questions})
 
 @login_required
+def reward_dashboard(request):
+    return render(request, 'rewards/dashboard.html')
 
 def survey_stats(request, survey_id):
     survey = get_object_or_404(Survey, id=survey_id)

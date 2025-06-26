@@ -8,3 +8,5 @@ def rewards(request):
     return render(request, 'rewards.html', {'rewards': all_rewards})
 
 @login_required
+def reward_dashboard(request):
+    return render(request, 'rewards/dashboard.html')
