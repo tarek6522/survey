@@ -75,7 +75,7 @@ DATABASES = {
         'PORT': os.environ.get("DB_PORT", "5432"),
     }
 }
-}
+
 
 # التحقق من كلمات المرور
 AUTH_PASSWORD_VALIDATORS = [
