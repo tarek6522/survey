@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.db import models
 from surveys.models import Survey, Question
 from rewards.models import Reward
+from surveys.models import Answer  # تأكد من أن Answer موجود في models
 
 def surveys(request):
-    user_group = getattr(request.user, 'profile', None)
     if request.user.is_authenticated and hasattr(request.user, 'userprofile'):
         group = request.user.userprofile.group
     else:
@@ -15,19 +16,17 @@ def surveys(request):
     )
     return render(request, 'surveys/surveys.html', {'surveys': surveys})
 
-    all_surveys = Survey.objects.all()
-    return render(request, 'surveys.html', {'surveys': all_surveys})
-
-
 
 def single_survey(request, survey_id):
     survey = get_object_or_404(Survey, id=survey_id)
     questions = survey.questions.all()
-    return render(request, 'single-survey.html', {'survey': survey, 'questions': questions})
+    return render(request, 'surveys/single-survey.html', {'survey': survey, 'questions': questions})
+
 
 @login_required
 def reward_dashboard(request):
-    return render(request, 'rewards/dashboard.html')
+    return render(request, 'accounts/dashboard.html')  # ✅ تم تصحيحه
+
 
 def survey_stats(request, survey_id):
     survey = get_object_or_404(Survey, id=survey_id)

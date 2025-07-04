@@ -24,15 +24,25 @@
     <nav>
       <ul>
         <li><a href="{% url 'index' %}">الرئيسية</a></li>
-        <li><a href="{% url 'surveys' %}">الاستبيانات</a></li>
-        <li><a href="#">كيف تعمل؟</a></li>
-        <li><a href="{% url 'rewards' %}">المكافآت</a></li>
-        <li><a href="{% url 'contact' %}">اتصل بنا</a></li>
-        <li><a href="{% url 'auth' %}">تسجيل</a></li>
-        <li><a href="{% url 'auth' %}">دخول</a></li>
-        <li><a href="{% url 'single_survey' %}">ابدأ الاستبيان</a></li>
-        <li><a href="{% url 'privacy' %}">سياسة الخصوصية</a></li>
-        <li><a href="{% url 'terms' %}">شروط الخدمة</a></li>
+
+<li><a href="{% url 'surveys:survey_list' %}">الاستبيانات</a></li>
+
+<li><a href="#">كيف تعمل؟</a></li>
+
+<li><a href="{% url 'rewards' %}">المكافآت</a></li>
+
+<li><a href="{% url 'contact' %}">اتصل بنا</a></li>
+
+<li><a href="{% url 'account_signup' %}">تسجيل</a></li>
+
+<li><a href="{% url 'account_login' %}">دخول</a></li>
+
+<li><a href="{% url 'surveys:single_survey' survey_id=1 %}">ابدأ الاستبيان</a></li>
+
+<li><a href="{% url 'privacy' %}">سياسة الخصوصية</a></li>
+
+<li><a href="{% url 'terms' %}">شروط الخدمة</a></li>
+
       </ul>
     </nav>
     <div class="auth-buttons">

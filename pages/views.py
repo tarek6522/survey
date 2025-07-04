@@ -4,22 +4,22 @@ from surveys.models import Survey, Question
 from rewards.models import Reward
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'pages/index.html')
 
 
 
 def privacy(request):
-    return render(request, 'privacy.html')
+    return render(request, 'pages/privacy.html')
 
 
 
 def terms(request):
-    return render(request, 'terms.html')
+    return render(request, 'pages/terms.html')
 
 
 
 def contact(request):
-    return render(request, 'contact.html')
+    return render(request, 'pages/contact.html')
 
 @login_required
 def placeholder_view(request):

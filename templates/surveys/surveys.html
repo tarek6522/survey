@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ title|default:'الصفحة' }}{% endblock %}
+{% block content %}
+
+<main>
+  <section class="container">
+    <h2>الاستبيانات المتاحة - استبيانات سوريا</h2>
+    <ul>
+      <li><a href="{% url 'surveys:single_survey' survey_id=1 %}">ابدأ الاستبيان</a></li>
+    </ul>
+  </section>
+</main>
+
+{% endblock %}

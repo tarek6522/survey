@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
@@ -17,9 +16,10 @@ router.register(r'profiles', UserProfileViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('pages.urls')),
+    path('', include('pages.urls')),  # يشمل contact/ وغيرها
     path('surveys/', include('surveys.urls')),
     path('rewards/', include('rewards.urls')),
     path('auth/', include('accounts.urls')),
+    path('accounts/', include('allauth.urls')),
     path('api/', include(router.urls)),
 ]

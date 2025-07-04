@@ -1,8 +1,8 @@
 from django.urls import path
-from . import views
-from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
+
+app_name = 'accounts'
 
 urlpatterns = [
-    path('dashboard/', views.dashboard, name='dashboard'),
-    path('', views.auth_view, name='auth_view'),
+    path('', TemplateView.as_view(template_name="accounts/auth.html"), name="auth"),
 ]

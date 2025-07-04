@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}المكافآت - استبيانات سوريا{% endblock %}
+
+{% block content %}
+<main>
+  <section class="rewards-section">
+    <div class="container">
+      <h2>مكافآتك تنتظرك!</h2>
+      <p class="subtitle">استبدل نقاطك التي كسبتها من الاستبيانات بمكافآت قيمة.</p>
+
+      <div class="user-points-info">
+        <h3>نقاطك الحالية: <span id="current-points">0</span> نقطة</h3>
+      </div>
+
+      <div class="reward-cards">
+        <div class="reward-card">
+          <img src="https://via.placeholder.com/150x100?text=MTN+Cash" alt="MTN كاش"/>
+          <h3>MTN كاش</h3>
+          <p>احصل على مبلغ نقدي يضاف إلى محفظة MTN كاش الخاصة بك.</p>
+          <ul>
+            <li>قيمة المبلغ: 25,000 ل.س</li>
+            <li>يتم التحويل خلال 24 ساعة</li>
+            <li>تأكيد عبر رقم الهاتف</li>
+          </ul>
+          <span class="points-cost">1200 نقطة</span>
+          <button class="button primary redeem-button">استبدال المكافأة</button>
+        </div>
+
+        <div class="reward-card">
+          <img src="https://via.placeholder.com/150x100?text=Syriatel+Cash" alt="Syriatel كاش"/>
+          <h3>Syriatel كاش</h3>
+          <p>احصل على مبلغ نقدي يضاف إلى محفظة Syriatel كاش الخاصة بك.</p>
+          <ul>
+            <li>قيمة المبلغ: 25,000 ل.س</li>
+            <li>يتم التحويل خلال 24 ساعة</li>
+            <li>تأكيد عبر رقم الهاتف</li>
+          </ul>
+          <span class="points-cost">1200 نقطة</span>
+          <button class="button primary redeem-button">استبدال المكافأة</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}

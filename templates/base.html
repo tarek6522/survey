@@ -2,12 +2,10 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-
-</style>
     <meta charset="UTF-8">
     <title>{% block title %}استبيانات سوريا{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <header>
@@ -23,8 +21,7 @@
                 </ul>
             </nav>
             <div class="auth-buttons">
-                <a href="{% url 'account_signup' %}" class="button primary">تسجيل</a>
-                <a href="{% url 'account_login' %}" class="button secondary">دخول</a>
+                <a href="{% url 'accounts:auth' %}" class="button primary">حسابي</a>
             </div>
         </div>
     </header>
@@ -43,6 +40,6 @@
         </div>
     </footer>
 
-    <script src="{% static 'script.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

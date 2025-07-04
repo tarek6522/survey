@@ -1173,4 +1173,25 @@ footer .footer-links a:hover {
 .visible {
     display: flex !important; /* لضمان ظهور ال overlay كـ flexbox */
     }
+    /* أزرار تسجيل الدخول والتسجيل */
+.button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 5px;
+    display: inline-block;
+    text-align: center;
+}
+
+.button.primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.button.secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
 }

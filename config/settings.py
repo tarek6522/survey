@@ -8,36 +8,60 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme-in-production')
 
 # وضع التصحيح
-DEBUG = False
+DEBUG = True
 
 # النطاقات المسموحة
 ALLOWED_HOSTS = ['survey-config-67ba.onrender.com', 'localhost', '127.0.0.1']
 
 # التطبيقات المثبتة
 INSTALLED_APPS = [
-    'pages',
-    'surveys',
-    'rewards',
-    'accounts.apps.AccountsConfig',
-    'rest_framework',
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Allauth core
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # Custom apps
+    'pages',
+    'surveys',
+    'rewards',
+    'accounts',
+    'rest_framework',
 ]
 
-# الوسيطات
+# عدد المواقع (ضروري لـ allauth)
+SITE_ID = 1
+
+# نظام التوثيق
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# تحويلات بعد الدخول والخروج
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+
+# الوسيطات (Middleware)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # ← لتخديم static files في الإنتاج
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
+
 ]
 
 # إعداد ملفات URL
@@ -47,12 +71,12 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'config', 'templates')],
+            'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                'django.template.context_processors.request',  # ← مطلوب لـ allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -63,19 +87,17 @@ TEMPLATES = [
 # إعدادات WSGI
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# قاعدة البيانات
-
+# إعدادات قاعدة البيانات
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("DB_NAME"),
-        'USER': os.environ.get("DB_USER"),
-        'PASSWORD': os.environ.get("DB_PASSWORD"),
-        'HOST': os.environ.get("DB_HOST", "localhost"),
-        'PORT': os.environ.get("DB_PORT", "5432"),
+        'NAME': 'surveydb',
+        'USER': 'postgres',
+        'PASSWORD': 'T@rekn731984',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
-
 
 # التحقق من كلمات المرور
 AUTH_PASSWORD_VALIDATORS = [
@@ -93,19 +115,15 @@ USE_TZ = True
 
 # الحقول التلقائية
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# إعدادات staticfiles في الإنتاج
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-# تأكد أن whitenoise مفعّل في middleware
-MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
-
+# إعدادات staticfiles
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'frontend', 'static'),
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'frontend', 'static'),  # إن وجد فعليًا
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-

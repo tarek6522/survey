@@ -5,8 +5,8 @@ from rewards.models import Reward
 
 def rewards(request):
     all_rewards = Reward.objects.all()
-    return render(request, 'rewards.html', {'rewards': all_rewards})
+    return render(request, 'rewards/rewards.html', {'rewards': all_rewards})
 
 @login_required
-def reward_dashboard(request):
-    return render(request, 'rewards/dashboard.html')
+def dummy_view(request):
+    return render(request, 'accounts/dashboard.html')  # ✅ تم تعديل المسار

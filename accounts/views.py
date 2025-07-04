@@ -4,7 +4,7 @@ from surveys.models import Survey, Question, Answer
 from rewards.models import Reward, RedemptionRequest
 
 def auth_view(request):
-    return render(request, 'auth.html')
+    return render(request, 'accounts/auth.html')
 
 @login_required
 def dashboard(request):

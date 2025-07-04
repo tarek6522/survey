@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>سياسة الخصوصية - استبيانات سوريا</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="{% static 'script.js' %}"></script>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>استبيانات سوريا</h1>
+    <nav>
+      <ul>
+        <li><a href="{% url 'index' %}">الرئيسية</a></li>
+        <li><a href="{% url 'surveys:survey_list' %}">الاستبيانات</a></li>
+        <li><a href="{% url 'index' %}#how-it-works">كيف تعمل؟</a></li>
+        <li><a href="{% url 'rewards' %}">المكافآت</a></li>
+        <li><a href="{% url 'contact' %}">اتصل بنا</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a class="button primary" href="/auth/">تسجيل</a>
+      <a class="button secondary" href="/auth/">دخول</a>
+    </div>
+  </div>
+</header>
+
+<main class="terms-page-main">
+  <section class="terms-section">
+    <div class="container">
+      <h2>سياسة الخصوصية</h2>
+      <p class="subtitle">توضح هذه السياسة كيفية جمعنا واستخدامنا وحمايتنا لبياناتك الشخصية.</p>
+
+      <div class="terms-content">
+        <h3>1. المعلومات التي نجمعها</h3>
+        <p>نقوم بجمع المعلومات لمساعدتنا على تقديم خدمة أفضل لجميع مستخدمينا...</p>
+        <ul>
+          <li><strong>معلومات تقدمها لنا مباشرة:</strong> ...</li>
+          <li><strong>معلومات نجمعها تلقائيًا:</strong> ...</li>
+        </ul>
+
+        <h3>2. كيف نستخدم معلوماتك</h3>
+        <ul>
+          <li>لتشغيل وصيانة المنصة...</li>
+          <li>لمعالجة مشاركاتك...</li>
+          <!-- تابع كما أدرجت سابقًا -->
+        </ul>
+
+        <h3>3. مشاركة المعلومات</h3>
+        <ul>
+          <li><strong>مع شركاء البحث:</strong> ...</li>
+          <li><strong>مع مقدمي الخدمات:</strong> ...</li>
+          <li><strong>لأسباب قانونية:</strong> ...</li>
+        </ul>
+
+        <h3>4. أمان البيانات</h3>
+        <p>نحن ملتزمون بحماية بياناتك الشخصية...</p>
+
+        <h3>5. حقوق المستخدم</h3>
+        <p>يحق لك الوصول إلى معلوماتك الشخصية...</p>
+
+        <h3>6. ملفات تعريف الارتباط (Cookies)</h3>
+        <p>نستخدم ملفات تعريف الارتباط لتحسين تجربتك...</p>
+
+        <h3>7. التغييرات على سياسة الخصوصية</h3>
+        <p>قد نقوم بتحديث سياسة الخصوصية هذه...</p>
+
+        <p class="date-updated">آخر تحديث: 21 يونيو 2025</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2025 استبيانات سوريا. جميع الحقوق محفوظة.</p>
+    <div class="footer-links">
+      <a href="{% url 'privacy' %}">سياسة الخصوصية</a>
+      <a href="{% url 'terms' %}">شروط الخدمة</a>
+    </div>
+  </div>
+</footer>
+
+<script src="{% static 'script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load allauth account %}
+
+{% block title %}{% trans "إنشاء حساب" %}{% endblock %}
+
+{% block content %}
+<main class="auth-page-main">
+  <section class="auth-form-section">
+    <div class="container">
+      <h2>{% trans "إنشاء حساب" %}</h2>
+
+      <p class="terms-text">
+        {% blocktranslate %}هل لديك حساب؟ <a href="{{ login_url }}">تسجيل الدخول</a>.{% endblocktranslate %}
+      </p>
+
+      {% url 'account_signup' as action_url %}
+      <form method="post" action="{{ action_url }}" class="auth-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ redirect_field }}
+        <button type="submit" class="button primary full-width">{% trans "تسجيل" %}</button>
+      </form>
+
+      {% if SOCIALACCOUNT_ENABLED %}
+        {% include "socialaccount/snippets/login.html" %}
+      {% endif %}
+    </div>
+  </section>
+</main>
+{% endblock %}
