@@ -11,7 +11,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme-in-production')
 DEBUG = True
 
 # النطاقات المسموحة
-ALLOWED_HOSTS = ['survey-config-67ba.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'survey-sbe6.onrender.com']
 
 # التطبيقات المثبتة
 INSTALLED_APPS = [
