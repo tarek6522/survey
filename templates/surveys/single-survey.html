@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}استبيان: تحديات المياه في سوريا{% endblock %}
+{% block title %}استبيان: {{ survey.title }}{% endblock %}
 
 {% block content %}
 <main class="single-survey-section">
   <div class="container">
     <div class="survey-header-details">
-      <h2>استبيان: تحديات المياه في سوريا</h2>
+      <h2>{{ survey.title }}</h2>
       <div class="survey-meta">
-        <span class="points">700 نقطة</span>
+        <span class="points">{{ survey.points }} نقطة</span>
         <span class="duration">10 دقائق</span>
-        <span class="category">الفئة: بيئة ومجتمع</span>
+        <span class="category">الفئة: {{ survey.target_group|default:"غير محددة" }}</span>
       </div>
-      <p>شاركنا رأيك حول قضايا المياه في سوريا، وساعدنا في جمع بيانات قيمة تساهم في فهم التحديات وتقديم الحلول الممكنة لتحسين إدارة الموارد المائية.</p>
+      <p>{{ survey.description }}</p>
     </div>
 
     <div class="survey-form">
@@ -23,49 +23,51 @@
       </div>
 
       <form id="surveyForm">
-        <!-- سؤال 1 -->
-        <div class="form-question current-question" data-question-index="0">
-          <p class="question-text">1. ما هي أهم مصادر المياه التي تعتمد عليها أسرتك بشكل أساسي؟</p>
+        {% for question in questions %}
+        <div class="form-question {% if not forloop.first %}hidden{% else %}current-question{% endif %}" data-question-index="{{ forloop.counter0 }}">
+          <p class="question-text">{{ forloop.counter }}. {{ question.text }}</p>
           <div class="options-group">
-            <label><input type="radio" name="q1" value="شبكة المياه العامة" required> شبكة المياه العامة</label>
-            <label><input type="radio" name="q1" value="الآبار الارتوازية الخاصة"> الآبار الارتوازية الخاصة</label>
-            <label><input type="radio" name="q1" value="صهاريج المياه (نقليات)"> صهاريج المياه (نقليات)</label>
-            <label><input type="radio" name="q1" value="ينابيع / أنهار"> ينابيع / أنهار</label>
-            <label><input type="radio" name="q1" value="مصادر أخرى"> مصادر أخرى (يرجى التحديد أدناه)</label>
-            <textarea name="q1_other" class="hidden" placeholder="يرجى تحديد المصدر الآخر"></textarea>
-          </div>
-        </div>
+            {% if question.question_type == "text" %}
+              <textarea name="question_{{ question.id }}" rows="4" required></textarea>
 
-        <!-- سؤال 2 -->
-        <div class="form-question hidden" data-question-index="1">
-          <p class="question-text">2. ما هي أبرز المشكلات التي تواجهونها بخصوص توفر المياه؟</p>
-          <div class="options-group">
-            <label><input type="checkbox" name="q2" value="انقطاع متكرر"> انقطاع متكرر</label>
-            <label><input type="checkbox" name="q2" value="ضعف الضغط"> ضعف ضغط المياه</label>
-            <label><input type="checkbox" name="q2" value="جودة المياه"> جودة المياه</label>
-            <label><input type="checkbox" name="q2" value="ارتفاع التكلفة"> ارتفاع التكلفة</label>
-            <label><input type="checkbox" name="q2" value="صعوبة الوصول"> صعوبة الوصول</label>
-          </div>
-        </div>
+            {% elif question.question_type == "radio" %}
+              {% for choice in question.choices.all %}
+                <label>
+                  <input type="radio" name="question_{{ question.id }}" value="{{ choice.text }}" {% if forloop.first %}required{% endif %}>
+                  {{ choice.text }}
+                </label>
+              {% empty %}
+                <p class="text-danger">لا توجد خيارات متاحة لهذا السؤال.</p>
+              {% endfor %}
 
-        <!-- سؤال 3 -->
-        <div class="form-question hidden" data-question-index="2">
-          <p class="question-text">3. هل تعتقد أن هناك جهودًا كافية تبذل لتحسين الوضع المائي؟</p>
-          <div class="options-group">
-            <label><input type="radio" name="q3" value="نعم بالتأكيد" required> نعم بالتأكيد</label>
-            <label><input type="radio" name="q3" value="إلى حد ما"> إلى حد ما</label>
-            <label><input type="radio" name="q3" value="لا أعتقد ذلك"> لا أعتقد ذلك</label>
-            <label><input type="radio" name="q3" value="لا أعرف"> لا أعرف</label>
-          </div>
-        </div>
+            {% elif question.question_type == "checkbox" %}
+              {% for choice in question.choices.all %}
+                <label>
+                  <input type="checkbox" name="question_{{ question.id }}_{{ forloop.counter }}" value="{{ choice.text }}">
+                  {{ choice.text }}
+                </label>
+              {% empty %}
+                <p class="text-danger">لا توجد خيارات متاحة لهذا السؤال.</p>
+              {% endfor %}
 
-        <!-- سؤال 4 -->
-        <div class="form-question hidden" data-question-index="3">
-          <p class="question-text">4. ما هي اقتراحاتك لتحسين إدارة الموارد المائية؟</p>
-          <div class="options-group">
-            <textarea name="q4" placeholder="اكتب اقتراحاتك هنا..." rows="5" required></textarea>
+            {% elif question.question_type == "number" %}
+              <input type="number" name="question_{{ question.id }}" class="form-control" required>
+
+            {% elif question.question_type == "yesno" %}
+              <label><input type="radio" name="question_{{ question.id }}" value="نعم" required> نعم</label>
+              <label><input type="radio" name="question_{{ question.id }}" value="لا"> لا</label>
+
+            {% elif question.question_type == "scale" %}
+              <select name="question_{{ question.id }}" class="form-control" required>
+                <option value="">اختر تقييم</option>
+                {% for i in "12345" %}
+                  <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+              </select>
+            {% endif %}
           </div>
         </div>
+        {% endfor %}
 
         <div class="survey-navigation-buttons">
           <button type="button" id="prev-question-btn" class="button secondary" style="display: none;">السابق</button>
@@ -83,11 +85,139 @@
     <span class="close-button">×</span>
     <img src="{% static 'success-icon.png' %}" alt="Success Icon" class="modal-icon"/>
     <h3>شكراً لمشاركتك!</h3>
-    <p>لقد أكملت الاستبيان بنجاح. تم إضافة <span>700</span> نقطة إلى رصيدك.</p>
+    <p>لقد أكملت الاستبيان بنجاح. تم إضافة <span>{{ survey.points }}</span> نقطة إلى رصيدك.</p>
     <div class="modal-buttons">
       <a class="button primary" href="/surveys/">تصفح استبيانات أخرى</a>
       <a class="button secondary" href="/rewards/">مشاهدة المكافآت</a>
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("surveyForm");
+  const nextBtn = document.getElementById("next-question-btn");
+  const prevBtn = document.getElementById("prev-question-btn");
+  const submitBtn = document.getElementById("submit-survey-btn");
+  const progressBar = document.getElementById("survey-progress-bar");
+  const progressText = document.getElementById("progress-text");
+  const questions = document.querySelectorAll(".form-question");
+  const modal = document.getElementById("successModal");
+
+  let currentQuestion = 0;
+
+  function showQuestion(index) {
+    questions.forEach((q, i) => {
+      q.classList.add("hidden");
+      q.classList.remove("current-question");
+      if (i === index) {
+        q.classList.remove("hidden");
+        q.classList.add("current-question");
+      }
+    });
+
+    prevBtn.style.display = index > 0 ? "inline-block" : "none";
+    nextBtn.style.display = index < questions.length - 1 ? "inline-block" : "none";
+    submitBtn.style.display = index === questions.length - 1 ? "inline-block" : "none";
+
+    const progress = Math.round(((index + 1) / questions.length) * 100);
+    progressBar.style.width = `${progress}%`;
+    progressText.textContent = `${progress}% مكتمل`;
+  }
+
+  nextBtn.addEventListener("click", () => {
+    if (currentQuestion < questions.length - 1) {
+      currentQuestion++;
+      showQuestion(currentQuestion);
+    }
+  });
+
+  prevBtn.addEventListener("click", () => {
+    if (currentQuestion > 0) {
+      currentQuestion--;
+      showQuestion(currentQuestion);
+    }
+  });
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const answers = [];
+
+    questions.forEach((q) => {
+      const inputs = q.querySelectorAll("input, textarea, select");
+      const nameSet = new Set();
+
+      inputs.forEach((input) => {
+        const name = input.name;
+        if (!nameSet.has(name)) {
+          nameSet.add(name);
+
+          if (input.type === "radio") {
+            const selected = q.querySelector(`input[name="${name}"]:checked`);
+            if (selected) {
+              answers.push({
+                question_id: name.replace("question_", ""),
+                response: selected.value
+              });
+            }
+          } else if (input.type === "checkbox") {
+            const checkedOptions = q.querySelectorAll(`input[name="${name}"]:checked`);
+            checkedOptions.forEach((opt) => {
+              answers.push({
+                question_id: name.replace(/question_|\_\d+/, ""),
+                response: opt.value
+              });
+            });
+          } else {
+            answers.push({
+              question_id: name.replace("question_", ""),
+              response: input.value
+            });
+          }
+        }
+      });
+    });
+
+    fetch("/surveys/submit/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": getCookie("csrftoken"),
+      },
+      body: JSON.stringify({ answers: answers }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "success") {
+          modal.classList.remove("hidden");
+        } else {
+          alert("حدث خطأ أثناء إرسال البيانات.");
+        }
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+        alert("فشل الاتصال بالخادم.");
+      });
+  });
+
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+      const cookies = document.cookie.split(";");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === name + "=") {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
+      }
+    }
+    return cookieValue;
+  }
+
+  showQuestion(currentQuestion);
+});
+</script>
 {% endblock %}

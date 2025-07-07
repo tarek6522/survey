@@ -7,7 +7,7 @@
     <div class="container">
         <h2>صوتك مهم... شارك، عبّر، واكسب!</h2>
         <p>منصة "استبيانات سوريا" تتيح لك التعبير عن آرائك حول قضايا تهم مجتمعنا، وكسب مكافآت قيمة مقابل وقتك ومشاركتك.</p>
-        <a href="{% url 'surveys:survey_list' %}" class="button call-to-action">ابدأ الآن</a>
+        <a href="{% url 'account_login' %}" class="button call-to-action">ابدأ الآن</a>
     </div>
 </section>
 
@@ -36,33 +36,6 @@
                 <p>استبدل نقاطك المتراكمة بمكافآت قيمة، مثل رصيد الهاتف أو بطاقات الهدايا والمزيد.</p>
             </div>
         </div>
-    </div>
-</section>
-
-<section class="featured-surveys">
-    <div class="container">
-        <h2>استبيانات مميزة</h2>
-        <div class="survey-cards">
-            <div class="card">
-                <h3>تحديات المياه في سوريا</h3>
-                <span class="points">700 نقطة</span>
-                <p>شارك في هذا الاستبيان وساهم في فهم التحديات وتقديم الحلول لتحسين إدارة المياه.</p>
-                <a href="{% url 'surveys:single_survey' survey_id=1 %}" class="button primary">ابدأ الاستبيان</a>
-            </div>
-            <div class="card">
-                <h3>تأثير التضخم على الأسر</h3>
-                <span class="points">900 نقطة</span>
-                <p>ساهم بآرائك حول تأثير الوضع الاقتصادي على معيشة الأسر السورية في الوقت الراهن.</p>
-                <a href="{% url 'surveys:single_survey' survey_id=2 %}" class="button primary">ابدأ الاستبيان</a>
-            </div>
-            <div class="card">
-                <h3>جودة الخدمات الصحية</h3>
-                <span class="points">600 نقطة</span>
-                <p>قيم مستوى الخدمات الصحية المتوفرة في منطقتك وقدم مقترحاتك للتحسين المستمر.</p>
-                <a href="{% url 'surveys:single_survey' survey_id=3 %}" class="button primary">ابدأ الاستبيان</a>
-            </div>
-        </div>
-        <a href="{% url 'surveys:survey_list' %}" class="button secondary">تصفح كل الاستبيانات</a>
     </div>
 </section>
 {% endblock %}

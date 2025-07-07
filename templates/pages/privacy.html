@@ -16,11 +16,11 @@
     <h1>استبيانات سوريا</h1>
     <nav>
       <ul>
-        <li><a href="{% url 'index' %}">الرئيسية</a></li>
+        <li><a href="{% url 'pages:index' %}">الرئيسية</a></li>
         <li><a href="{% url 'surveys:survey_list' %}">الاستبيانات</a></li>
-        <li><a href="{% url 'index' %}#how-it-works">كيف تعمل؟</a></li>
-        <li><a href="{% url 'rewards' %}">المكافآت</a></li>
-        <li><a href="{% url 'contact' %}">اتصل بنا</a></li>
+        <li><li><a href="{% url 'pages:index' %}#how-it-works">كيف تعمل؟</a></li>
+        <li><a href="/rewards/">...</a></li>
+        <li><a href="{% url 'pages:contact' %}">اتصل بنا</a></li>
       </ul>
     </nav>
     <div class="auth-buttons">
@@ -80,8 +80,8 @@
   <div class="container">
     <p>© 2025 استبيانات سوريا. جميع الحقوق محفوظة.</p>
     <div class="footer-links">
-      <a href="{% url 'privacy' %}">سياسة الخصوصية</a>
-      <a href="{% url 'terms' %}">شروط الخدمة</a>
+      <a href="{% url 'pages:privacy' %}">سياسة الخصوصية</a>
+      <a href="{% url 'pages:terms' %}">شروط الخدمة</a>
     </div>
   </div>
 </footer>

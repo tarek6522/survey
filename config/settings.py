@@ -48,7 +48,7 @@ AUTHENTICATION_BACKENDS = [
 
 # تحويلات بعد الدخول والخروج
 LOGIN_REDIRECT_URL = '/'
-ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/auth/auth/'
 
 # الوسيطات (Middleware)
 MIDDLEWARE = [
@@ -127,3 +127,14 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# ✅ نموذج تسجيل الدخول المخصص
+ACCOUNT_FORMS = {
+    'login': 'accounts.forms.CustomLoginForm',
+}
+
+DEBUG = True
+
+
+LOGIN_URL = '/auth/auth/'
+

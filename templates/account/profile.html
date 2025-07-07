@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}تعديل الملف الشخصي{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="card shadow p-4" style="max-width: 800px; margin: auto;">
+        <h2 class="mb-4 text-center">✏️ تعديل الملف الشخصي</h2>
+        {% if messages %}
+    <div class="alert alert-success text-center">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="row">
+                {% for field in form %}
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="text-danger small">{{ field.errors }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary px-5 py-2">
+                    💾 حفظ التعديلات
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

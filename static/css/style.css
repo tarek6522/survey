@@ -91,6 +91,8 @@ header nav a:hover {
     font-weight: bold;
     text-align: center;
     transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    margin: 5px;
 }
 
 .button.primary {
@@ -126,6 +128,17 @@ header nav a:hover {
 .button.call-to-action:hover {
     background-color: #006400; /* أخضر أغمق عند التحويم */
 }
+
+.button.small {
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.button.full-width {
+    width: 100%;
+    margin-top: 15px;
+}
+
 
 /* Hero Section */
 .hero {
@@ -497,11 +510,6 @@ footer .footer-links a:hover {
     box-shadow: 0 0 0 2px rgba(0, 128, 0, 0.2); /* ظل أخضر خفيف */
 }
 
-.button.full-width {
-    width: 100%;
-    margin-top: 15px;
-}
-
 .forgot-password-link,
 .terms-text {
     display: block;
@@ -519,6 +527,16 @@ footer .footer-links a:hover {
 .auth-form.hidden {
     display: none;
 }
+
+.auth-form {
+  max-width: 100%;
+  width: 100%;
+  padding: 30px;
+  background-color: var(--accent-white);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
 
 /* --- Surveys List Page Styles --- */
 .surveys-list-section {
@@ -971,7 +989,360 @@ footer .footer-links a:hover {
     display: block; /* إظهار السؤال الحالي فقط */
 }
 
-/* Responsive Design (للتجاوب مع شاشات الجوال والتابلت) */
+/* --- Success Modal Styles --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* خلفية معتمة */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* لضمان ظهورها فوق كل شيء */
+}
+
+.modal-content {
+    background-color: var(--accent-white);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    transform: scale(0.9); /* تأثير صغير عند الظهور */
+    transition: transform 0.3s ease-out;
+}
+
+.modal-overlay.visible .modal-content {
+    transform: scale(1); /* ارجع للحجم الطبيعي عند الظهور */
+}
+
+
+.modal-content .close-button {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.modal-content .close-button:hover {
+    color: var(--primary-color);
+}
+
+.modal-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    background-color: var(--accent-green);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: contain; /* للتأكد من أن الأيقونة تظهر بشكل جيد */
+}
+
+.modal-content h3 {
+    font-size: 2rem;
+    color: var(--accent-black);
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.modal-content p span {
+    font-weight: bold;
+    color: var(--primary-color); /* لجعل النقاط بارزة */
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* المسافة بين الأزرار */
+}
+
+.modal-buttons .button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    min-width: 150px;
+}
+
+/* Utility class to hide/show */
+.hidden {
+    display: none !important;
+}
+.visible {
+    display: flex !important; /* لضمان ظهور ال overlay كـ flexbox */
+}
+
+
+/* 
+================================================
+  Dashboard Page Styles
+  (تم نقلها هنا وإصلاح التعارضات)
+================================================
+*/
+.dashboard-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+  direction: rtl;
+  text-align: right;
+}
+
+.dashboard-header {
+  background: var(--light-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.lead {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+}
+
+.highlight {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.dashboard-section {
+  margin-top: 2rem;
+}
+
+.dashboard-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.dashboard-card {
+  background: var(--accent-white);
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.dashboard-card.empty {
+  text-align: center;
+  font-style: italic;
+  background: #f1f1f1;
+}
+
+.auth-warning {
+  background: #fff3cd;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #ffeeba;
+  color: #856404;
+}
+
+.badge-status {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.status-accepted {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-rejected {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+/*
+================================================
+  NEW - Modern Dashboard Design
+================================================
+*/
+
+.dashboard-page-main {
+    padding: 40px 0;
+    background-color: var(--light-bg);
+}
+
+/* استخدمنا هذا الكلاس في HTML بدلاً من .dashboard-container لتجنب التعارض */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.dashboard-welcome {
+    margin-bottom: 30px;
+    padding: 25px;
+    background-color: var(--accent-white);
+    border-radius: 12px;
+    border-left: 5px solid var(--primary-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+.dashboard-welcome h1 {
+    font-size: 2rem;
+    color: var(--accent-black);
+    margin-bottom: 5px;
+}
+
+.dashboard-welcome p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.dashboard-grid-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+
+/* تنسيقات العمود الجانبي */
+.dashboard-sidebar .dashboard-card {
+    padding: 25px;
+}
+
+.user-profile-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+}
+
+.user-profile-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.user-profile-card li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 18px;
+}
+
+.user-profile-card li i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-style: normal; /* لإزالة الميلان إذا كنت تستخدم وسوم i */
+}
+
+.user-profile-card li strong {
+    color: var(--accent-black);
+}
+
+/* تنسيقات المحتوى الرئيسي */
+.dashboard-main h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: var(--accent-black);
+}
+
+.survey-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.survey-item {
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.survey-item:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.survey-item-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.survey-info h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: var(--accent-black);
+}
+
+.survey-meta-info {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* 
+================================================
+  NEW - Responsive Styles for Dashboard
+================================================
+*/
+/* أضف هذا الكود داخل الـ media query الموجودة لديك */
+
+/* @media (max-width: 992px) { ... }  <-- يفضل استخدام هذا القياس للداشبورد */
+/* إذا كانت لديك فقط 768px، يمكنك إضافته بداخلها */
+
+@media (max-width: 992px) {
+    .dashboard-grid-layout {
+        /* تحويل التخطيط إلى عمود واحد في الشاشات الأصغر */
+        grid-template-columns: 1fr;
+    }
+    .dashboard-sidebar {
+        /* تغيير ترتيب العناصر لتظهر البطاقة الشخصية أولاً */
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-welcome h1 {
+        font-size: 1.6rem;
+    }
+    .survey-item-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .survey-item .button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+/* 
+================================================
+  Responsive Design 
+  (للتجاوب مع شاشات الجوال والتابلت)
+================================================
+*/
 @media (max-width: 768px) {
     header .container {
         flex-direction: column;
@@ -1079,119 +1450,4 @@ footer .footer-links a:hover {
         max-width: 100%;
         padding: 25px;
     }
-    /* --- Success Modal Styles --- */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* خلفية معتمة */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* لضمان ظهورها فوق كل شيء */
-}
-
-.modal-content {
-    background-color: var(--accent-white);
-    padding: 40px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
-    max-width: 500px;
-    width: 90%;
-    position: relative;
-    transform: scale(0.9); /* تأثير صغير عند الظهور */
-    transition: transform 0.3s ease-out;
-}
-
-.modal-overlay.visible .modal-content {
-    transform: scale(1); /* ارجع للحجم الطبيعي عند الظهور */
-}
-
-
-.modal-content .close-button {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    font-size: 30px;
-    cursor: pointer;
-    color: var(--text-color);
-}
-
-.modal-content .close-button:hover {
-    color: var(--primary-color);
-}
-
-.modal-icon {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 20px;
-    border-radius: 50%;
-    background-color: var(--accent-green);
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    object-fit: contain; /* للتأكد من أن الأيقونة تظهر بشكل جيد */
-}
-
-.modal-content h3 {
-    font-size: 2rem;
-    color: var(--accent-black);
-    margin-bottom: 15px;
-}
-
-.modal-content p {
-    font-size: 1.1rem;
-    color: var(--text-color);
-    margin-bottom: 30px;
-    line-height: 1.6;
-}
-
-.modal-content p span {
-    font-weight: bold;
-    color: var(--primary-color); /* لجعل النقاط بارزة */
-}
-
-.modal-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px; /* المسافة بين الأزرار */
-}
-
-.modal-buttons .button {
-    padding: 12px 25px;
-    font-size: 1rem;
-    min-width: 150px;
-}
-
-/* Utility class to hide/show */
-.hidden {
-    display: none !important;
-}
-.visible {
-    display: flex !important; /* لضمان ظهور ال overlay كـ flexbox */
-    }
-    /* أزرار تسجيل الدخول والتسجيل */
-.button {
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    text-decoration: none;
-    margin: 5px;
-    display: inline-block;
-    text-align: center;
-}
-
-.button.primary {
-    background-color: #007bff;
-    color: white;
-}
-
-.button.secondary {
-    background-color: #6c757d;
-    color: white;
-}
-
 }

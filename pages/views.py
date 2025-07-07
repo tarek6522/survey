@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from surveys.models import Survey, Question
 from rewards.models import Reward
 
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)
+
 def index(request):
     return render(request, 'pages/index.html')
 

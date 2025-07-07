@@ -1,6 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from surveys.views import reward_dashboard
+from django.urls import include
+
 
 from surveys.api import SurveyViewSet, QuestionViewSet, AnswerViewSet
 from rewards.api import RewardViewSet, RedemptionRequestViewSet
@@ -16,10 +19,17 @@ router.register(r'profiles', UserProfileViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('pages.urls')),  # يشمل contact/ وغيرها
+    path('', include('pages.urls')),  # ✅ الآن الصفحة الرئيسية تعمل من pages/views.py > index
     path('surveys/', include('surveys.urls')),
     path('rewards/', include('rewards.urls')),
-    path('auth/', include('accounts.urls')),
+    path('auth/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('accounts/', include('allauth.urls')),
     path('api/', include(router.urls)),
+    path('dashboard/', reward_dashboard, name='reward_dashboard'),
+    path('admin-dashboard/', include('dashboard.urls')),
+    path('accounts/', include('accounts.urls')),
+
+
 ]
+
+handler404 = 'pages.views.custom_404'

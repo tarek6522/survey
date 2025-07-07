@@ -1,23 +1,77 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}لوحة التحكم{% endblock %}
+
 {% block content %}
-  <h2>لوحة التحكم</h2>
-  <p>النقاط المكتسبة: {{ total_points }}</p>
+<div class="container py-4">
+    {% if request.user.is_authenticated and request.user.profile %}
 
-  <h3>الاستبيانات التي أجبت عليها:</h3>
-  <ul>
-    {% for answer in answers %}
-      <li>{{ answer.survey.title }}</li>
-    {% empty %}
-      <li>لم تجب على أي استبيان بعد.</li>
-    {% endfor %}
-  </ul>
+        <!-- ✅ قسم الترحيب مع زر تعديل -->
+        <div class="card shadow-sm p-4 mb-4 d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div>
+                <h2 class="mb-1">مرحباً بك، {{ request.user.username }} 👋</h2>
+                <p class="text-muted mb-0">هنا يمكنك تتبع نشاطك وإدارة استبياناتك بسهولة.</p>
+            </div>
+            <a href="{% url 'accounts:edit_profile' %}" class="btn btn-outline-primary mt-3 mt-md-0">
+                ✏️ تعديل الملف الشخصي
+            </a>
+        </div>
 
-  <h3>طلبات الاسترداد:</h3>
-  <ul>
-    {% for req in redemptions %}
-      <li>{{ req.reward.name }} - {{ req.status }}</li>
-    {% empty %}
-      <li>لا توجد طلبات.</li>
-    {% endfor %}
-  </ul>
+        <div class="row">
+            <!-- ✅ عمود ملخص الحساب -->
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm p-4 h-100">
+                    <h5 class="mb-3">ملخص حسابك</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <strong>🎯 النقاط:</strong> {{ request.user.profile.points }}
+                        </li>
+                        <li class="mb-2">
+                            <strong>📝 عدد الاستبيانات المجابة:</strong> {{ answers.count }}
+                        </li>
+                        <li class="mb-2">
+                            <strong>🎁 طلبات الاسترداد:</strong> {{ redemptions.count }}
+                        </li>
+                    </ul>
+                    <a href="/rewards/my-requests/" class="btn btn-success w-100 mt-3">
+                        عرض طلبات المكافآت
+                    </a>
+                </div>
+            </div>
+
+            <!-- ✅ عمود الاستبيانات -->
+            <div class="col-md-8">
+                <div class="card shadow-sm p-4">
+                    <h5 class="mb-3">الاستبيانات المتاحة لك 📋</h5>
+
+                    {% if available_surveys %}
+                        {% for survey in available_surveys %}
+                            <div class="border rounded p-3 mb-3 d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-1">{{ survey.title }}</h6>
+                                    <small class="text-muted">{{ survey.description|truncatechars:100 }}</small>
+                                </div>
+                                <a href="{% url 'surveys:single_survey' survey.id %}" class="btn btn-primary btn-sm">
+                                    ابدأ الآن
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="alert alert-info text-center">
+                            🚫 لا توجد استبيانات متاحة حالياً، تحقق لاحقاً.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="alert alert-warning text-center">
+            🚫 يجب تسجيل الدخول للوصول إلى لوحة التحكم.
+            <br>
+            <a href="{% url 'account_login' %}" class="btn btn-primary mt-3">تسجيل الدخول</a>
+        </div>
+    {% endif %}
+</div>
 {% endblock %}
