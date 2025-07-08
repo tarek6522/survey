@@ -1,8 +1,15 @@
 #!/usr/bin/env python
 import os
 import sys
+import django
 
 def main():
+    """Run administrative tasks."""
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+    django.setup()
+    from django.core.management import call_command
+    call_command('migrate')  # ← هذا هو السطر المهم
+
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')  # أو عدّلها إلى 'survey.settings' إذا لزم
     try:
         from django.core.management import execute_from_command_line
