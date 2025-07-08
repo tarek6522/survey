@@ -5,11 +5,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 
 application = get_wsgi_application()
 
-import django
-from django.core.management import call_command
+from django.contrib.auth.models import User
 
-django.setup()
-try:
-    call_command('migrate')
-except Exception as e:
-    print(f"❌ Migration error: {e}")
+if not User.objects.filter(username='admin').exists():
+    User.objects.create_superuser('admin', 'admin@example.com', 'adminpassword123')
