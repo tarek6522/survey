@@ -114,3 +114,5 @@ ACCOUNT_FORMS = {
 
 # ✅ رابط تسجيل الدخول الافتراضي
 LOGIN_URL = '/auth/auth/'
+
+# Trigger Render deploy for static files
